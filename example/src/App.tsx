@@ -82,9 +82,6 @@ export default () => {
     const newImages = createImages({ count: 5, width: 300, height: 900 })
     const updated = [...newImages, ...images]
     setImages(updated)
-    if (!currentId) {
-      setCurrentId(updated[0].id)
-    }
   }
 
   const addToEnd = () => {
@@ -112,30 +109,28 @@ export default () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Modal visible>
-        <View style={{ width: '100%', flexDirection: 'column' }}>
-          <View style={styles.sliderWrap}>
-            <RnImageSwiper
-              currentId={currentId || undefined}
-              onChange={setCurrentId}
-              images={images}
-              minScale={0.6}
-              maxScale={8}
-            />
-          </View>
-          <View
-            style={{
-              width: '100%',
-              flexDirection: 'row',
-              justifyContent: 'center',
-            }}
-          >
-            <Button title="add items to start" onPress={addToStart} />
-            <Button title="add items to end" onPress={addToEnd} />
-            <Button title="to last item" onPress={toLastItem} />
-          </View>
+      <View style={{ width: '100%', flexDirection: 'column' }}>
+        <View style={styles.sliderWrap}>
+          <RnImageSwiper
+            currentId={currentId || undefined}
+            onChange={setCurrentId}
+            images={images}
+            minScale={0.6}
+            maxScale={8}
+          />
         </View>
-      </Modal>
+        <View
+          style={{
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Button title="add items to start" onPress={addToStart} />
+          <Button title="add items to end" onPress={addToEnd} />
+          <Button title="to last item" onPress={toLastItem} />
+        </View>
+      </View>
     </SafeAreaView>
   )
 }
@@ -159,7 +154,7 @@ const styles = StyleSheet.create({
   sliderWrap: {
     width: '100%',
     height: 400,
-    backgroundColor: 'red',
+    backgroundColor: 'green',
   },
   sectionDescription: {
     marginTop: 8,

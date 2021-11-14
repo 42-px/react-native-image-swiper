@@ -18,7 +18,7 @@ import com.facebook.react.bridge.WritableMap
 import com.facebook.react.bridge.WritableNativeMap
 
 
-class SwiperView constructor(
+class SwiperView @JvmOverloads constructor(
   context: Context,
   attributeSet: AttributeSet? = null,
   defStyleAttr: Int = 0
