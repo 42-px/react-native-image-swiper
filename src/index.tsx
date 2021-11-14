@@ -1,26 +1,50 @@
+import React from 'react'
 import {
   requireNativeComponent,
-  UIManager,
   Platform,
+  StyleSheet,
+  StyleProp,
   ViewStyle,
-} from 'react-native';
+} from 'react-native'
 
-const LINKING_ERROR =
-  `The package 'react-native-image-swiper' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+import { IosSwiper } from './ios-swiper'
+import type { BaseProps, ChangePayload } from './types'
 
-type ImageSwiperProps = {
-  color: string;
-  style: ViewStyle;
-};
+type AndroidProps = BaseProps & {
+  onChange?: (payload: ChangePayload) => void
+  style?: StyleProp<ViewStyle>
+}
 
-const ComponentName = 'ImageSwiperView';
+const SwiperComp =
+  Platform.OS === 'android'
+    ? requireNativeComponent<AndroidProps>('ImageSwiperView')
+    : IosSwiper
 
-export const ImageSwiperView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<ImageSwiperProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };
+type Props = BaseProps & {
+  onChange?: (payload: string) => void
+}
+
+export const RnImageSwiper = (props: Props) => {
+  const { onChange, ...restProps } = props
+
+  const proxyClearEventVal = (e: ChangePayload) => {
+    if (onChange) {
+      onChange(e.nativeEvent.slideId)
+    }
+  }
+
+  return (
+    <SwiperComp
+      {...restProps}
+      onChange={proxyClearEventVal}
+      style={styles.slider}
+    />
+  )
+}
+
+const styles = StyleSheet.create({
+  slider: {
+    minWidth: '100%',
+    height: '100%',
+  },
+})
