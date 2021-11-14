@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
-import { RnImageSwiper } from 'react-native-image-swiper'
+import { RnImageSwiper } from '@42px/react-native-image-swiper'
 
 function randomString(length = 10) {
   let result = ''
