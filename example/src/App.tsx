@@ -115,8 +115,8 @@ export default () => {
             currentId={currentId || undefined}
             onChange={setCurrentId}
             images={images}
-            minScale={0.6}
-            maxScale={8}
+            minScale={1}
+            maxScale={3}
           />
         </View>
         <View

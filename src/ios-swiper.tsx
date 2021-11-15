@@ -77,15 +77,13 @@ const Slide = ({
   ) => {
     if (zoomLevel === 1 && !scrollEnabled) {
       setScrollEnabled(true)
-      return true
     }
 
     if (zoomLevel > 1 && scrollEnabled) {
       setScrollEnabled(false)
-      return true
     }
 
-    return true
+    return false
   }
 
   return (

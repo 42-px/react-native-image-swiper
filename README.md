@@ -8,7 +8,7 @@ bi-directional swiper for ReactNative
 * zoom image
 * correct behavior when adding new images
 
-# Why does the world need another spiwer?
+# Why does the world need another swiper?
 
 if you use/wrote a some swiper on ReactNative, you must have suffered. The big problem starts when you start adding items dynamically to the beginning of the list. This happens because the `maintainVisibleContentPosition` prop is not supported in ScrollView (Flatlist) on android (only iOS support). And the default behavior of ScrollView when adding new items is to shift to the beginning. This leads to a terrible UX. 
 
