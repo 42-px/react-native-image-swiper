@@ -1,6 +1,6 @@
 {
   "name": "@42px/react-native-image-swiper",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "bi-directional slider supports adding and removing elements",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
